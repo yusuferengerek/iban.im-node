@@ -1,0 +1,26 @@
+{
+  "db":{
+    "port": 5432,
+    "host": "localhost",
+    "database": "ibanim",
+    "username": "ibanim",
+    "password": "ibanim",
+    "dialect": "postgres",
+    "pool":{
+      "max": 30,
+      "min": 10,
+      "idle": 60000,
+      "acqiure": 30000
+    }
+  },
+  "smtp":{
+    "port": 587,
+    "host": "smtp.iban.im",
+    "user": "info@iban.im",
+    "password": "xxxxxx"
+  },
+  "app":{
+    "port": 4880,
+    "secret": "supersecretkey"
+  }
+}
