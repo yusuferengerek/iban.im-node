@@ -3,7 +3,7 @@ const { Router } = require('express');
 const name = '/auth';
 const route = Router();
 
-route.get('/sign-up', signUp);
-route.get('/sign-in', signIn);
+route.post('/sign-up', signUp);
+route.post('/sign-in', signIn);
 
 module.exports = { name, route };
