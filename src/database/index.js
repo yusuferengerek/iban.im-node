@@ -38,7 +38,12 @@ async function connect(){
   try{
     await sequelize.authenticate();
     for(const model of Object.values(sequelize._models)){
-      await model.sync();
+      try{
+        await model.drop();
+        await model.sync({ force: true });
+      }catch{
+        await model.sync({ force: true });
+      }
     }
     await sequelize.sync();
 
