@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes){
   const conf = {
-    name: 'user',
+    name: 'users',
     ships:[
       {
         method: 'hasMany',
-        target: 'iban',
+        target: 'ibans',
         data:{
           foreignKey: 'ownerId',
           as: 'ibans'
@@ -44,7 +44,6 @@ module.exports = function (sequelize, DataTypes){
       type: DataTypes.STRING,
       allowNull: false,
       set(value) {
-        // Hash password before saving
         this.setDataValue('password', bcrypt.hashSync(value, bcrypt.genSaltSync(10)));
       },
     },
@@ -88,6 +87,17 @@ module.exports = function (sequelize, DataTypes){
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    }
+  }, {
+    timestamps: true,
+    paranoid: true,
+    defaultScope: {
+      attributes: { exclude: ['password'] },
+    },
+    instanceMethods: {
+      async comparePassword(password) {
+        return await bcrypt.compare(password, this.password);
+      }
     }
   });
 
