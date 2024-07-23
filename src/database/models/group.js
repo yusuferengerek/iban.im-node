@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes){
   const conf = {
-    name: 'group',
+    name: 'groups',
     ships:[
       {
         method: 'hasMany',
-        target: 'iban',
+        target: 'ibans',
         data:{
           foreignKey: 'groupId',
           as: 'ibans'
